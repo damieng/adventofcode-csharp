@@ -34,6 +34,8 @@ class Program
         return costs.Min();
     }
 
+    record Data(int count, long cost);
+
     private static long MovePart2(int[] startPositions)
     {
         var min = startPositions.Min();
@@ -41,17 +43,22 @@ class Program
 
         var costs = new long[max - min + 1];
 
+        var z = startPositions.GroupBy(g => g).ToDictionary(g => g.Key, new Data(g.Count(), 0));
+
         // Simulate all the moves and add up their costs
         for (var i = min; i <= max; i++)
         {
-            for (var j = 0; j < startPositions.Length; j++)
+            foreach(var item in z)
             {
-                // Slow and inefficient
+                long cost = 0;
                 var movement = Math.Abs(i - startPositions[j]);
                 for (var s = 1; s <= movement; s++)
-                    costs[i - min] += s;
+                    cost += s;
+                item.Value.Item2 = cost;
             }
         }
+
+
 
         return costs.Min();
     }
