@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-record Display(string[] signals, string[] output);
-
 class Program
 {
     static void Main()
