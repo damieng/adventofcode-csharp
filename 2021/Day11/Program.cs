@@ -62,7 +62,7 @@ class Program
             if (allFlashedAt == -1 && stepFlashCount == octo.Length * octo[0].Length)
                 allFlashedAt = step;
 
-            // Increase
+            // Reset
             for (var y = 0; y < octo.Length; y++)
             {
                 for (var x = 0; x < octo[y].Length; x++)
